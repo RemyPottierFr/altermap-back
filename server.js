@@ -13,7 +13,7 @@ const pool = new Pool({
   host: process.env.DATABASE_URL,
   database: process.env.DB_NAME,
   password: process.env.DB_PASSWORD,
-  port: process.env.PORT,
+  port: process.env.DB_PORT,
 });
 
 app.get('/api/v1/construction-sites', (req, res) => {
