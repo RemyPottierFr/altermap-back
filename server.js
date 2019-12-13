@@ -10,7 +10,7 @@ app.use(express.urlencoded({ extended: true }));
 
 const pool = new Pool({
   user: process.env.DB_USER,
-  host: process.env.SCALINGO_POSTGRESQL_URL,
+  host: process.env.DATABASE_URL,
   database: process.env.DB_NAME,
   password: process.env.DB_PASSWORD,
   port: 5432,
