@@ -26,7 +26,7 @@ router.post('/', (req, res) => {
   );
 });
 
-router.put('/api/v1/construction-sites/:id', async (req, res) => {
+router.put('/:id', async (req, res) => {
   const { id } = req.params;
   const { name, coords } = req.body;
   console.log(req.body);
@@ -41,7 +41,7 @@ router.put('/api/v1/construction-sites/:id', async (req, res) => {
       }
     });
 });
-router.delete('/api/v1/construction-sites/:id', async (req, res) => {
+router.delete('/:id', async (req, res) => {
   const { id } = req.params;
   console.log(req.body);
   await pool.query('DELETE FROM construction_sites where id= $1',
