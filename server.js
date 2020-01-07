@@ -1,39 +1,16 @@
 require('dotenv').config();
-
-const { Pool } = require('pg');
 const express = require('express');
 
 const app = express();
-const port = 4000;
+const constructionSites = require('./routes/constructionSites');
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-const pool = new Pool({
-  connectionString: process.env.DATABASE_URL,
-});
+const port = process.env.PORT || 4000;
 
-app.get('/api/v1/construction-sites', (req, res) => {
-  pool.query('SELECT * from construction_sites', (err, results) => {
-    if (err) {
-      return res.status(500).send(err);
-    }
-    return res.send(results.rows);
-  });
-});
 
-app.post('/api/v1/construction-sites', (req, res) => {
-  const { name, coords } = req.body;
-  pool.query(
-    'INSERT INTO construction_sites (name,coords) VALUES ($1, $2)',
-    [name, coords],
-    (err, results) => {
-      if (err) {
-        return res.status(500).send(err);
-      }
-      return res.send(results);
-    },
-  );
-});
+app.use('/api/v1/construction-sites', constructionSites);
 
 app.listen(port, (err) => {
   if (err) {
