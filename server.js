@@ -8,8 +8,10 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 const port = process.env.PORT || 4000;
-
-
+// Import the library:
+var cors = require('cors');
+// Then use it before your routes are set up:
+app.use(cors());
 app.use('/api/v1/construction-sites', constructionSites);
 
 app.listen(port, (err) => {
