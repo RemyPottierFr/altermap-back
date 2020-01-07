@@ -9,11 +9,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 const pool = new Pool({
-  user: process.env.DB_USER,
-  host: process.env.DB_HOST,
-  database: process.env.DB_NAME,
-  password: process.env.DB_PASSWORD,
-  port: process.env.PORTPG,
+  connectionString: process.env.DATABASE_URL,
 });
 
 app.get('/api/v1/construction-sites', (req, res) => {
